@@ -14,10 +14,10 @@ app.use(express.static('public'))
 app.get('/index',(req,res)=> {     //routing for the home page
 res.sendfile(path.resolve(__dirname,'pages/index.html'))
 })
-/*app.get('/home',(req,res)=> {     //routing for the home page
+app.get('/home',(req,res)=> {     //routing for the home page
     res.render('index')
     })
-*/
+
 
     app.get('/home',(req,res)=> {     //routing for the home page
         res.sendfile(path.resolve(__dirname,'pages/index.html'))
@@ -32,6 +32,8 @@ app.get('/about',(req,res)=> {   // routing for the about page
 app.get('/contact',(req,res)=> {   //routing for the contact page
             res.sendfile(path.resolve(__dirname,'pages/contact.html'))
 })  
+
+//hello
 
 app.listen(4000,()=> {
 console.log('App listening on port 4000');
