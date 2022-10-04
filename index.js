@@ -34,14 +34,25 @@ res.render('index')
 })
 
 
+
+app.get('/index',(req,res)=>{
+
+    res.render('index')
+    
+    
+    })
+
+
 app.get('/about',(req,res)=> {   // routing for the about page
-    res.sendfile(path.resolve(__dirname,'pages/about.html'))
+//   res.sendfile(path.resolve(__dirname,'pages/about.html'))
+res.render('about')
 })
     app.get('/post',(req,res)=> {   //routing for the post page
-        res.sendfile(path.resolve(__dirname,'pages/post.html'))
+       res.render('post')
 })    
 app.get('/contact',(req,res)=> {   //routing for the contact page
-            res.sendfile(path.resolve(__dirname,'pages/contact.html'))
+           // res.sendfile(path.resolve(__dirname,'pages/contact.html'))
+           res.render('contact')
 })  
 
 //hello   
