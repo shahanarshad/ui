@@ -6,6 +6,14 @@ const expressEdge = require('express-edge');
 const path = require("path")
 const app= new express()
 
+
+const mongoose = require('mongoose')
+mongoose.connect('mongodb+srv://shahanarshad86:powersoft19@shahan.zyyftyn.mongodb.net/test')
+
+
+
+
+
 app.use(express.static('public'))
 app.use(expressEdge.engine)
 //app.set('views','${__dirname}/views')
@@ -34,13 +42,18 @@ res.render('index')
 })
 
 
+   /* app.get('/new',(req,res)=>{   //will route to create.edge file if request comes
+    res.render('create')
+    } 
+    )*/
 
-app.get('/index',(req,res)=>{
 
-    res.render('index')
-    
-    
-    })
+    app.get('/index',(_req,res)=>{
+
+        res.render('index')
+        
+        
+        })
 
 
 app.get('/about',(req,res)=> {   // routing for the about page
