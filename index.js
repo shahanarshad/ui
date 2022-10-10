@@ -42,10 +42,10 @@ res.render('index')
 })
 
 
-   /* app.get('/new',(req,res)=>{   //will route to create.edge file if request comes
+   app.get('/new',(req,res)=>{   //will route to create.edge file if request comes
     res.render('create')
     } 
-    )*/
+    )
 
 
     app.get('/index',(_req,res)=>{
