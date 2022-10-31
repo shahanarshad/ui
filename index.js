@@ -58,8 +58,6 @@ app.get('/about', (req, res) => {   // routing for the about page
 app.get('/post/:id', async (req, res) => {   //routing for the post page
     //    console.log(req.params)   //display the object paramas in the log
     const post = await Post.findById(req.params.id)
-
-
     res.render('post', {
         post
     })
