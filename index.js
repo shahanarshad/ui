@@ -42,8 +42,6 @@ app.get('/post/new', (req, res) => {   //will route to create.edge file if reque
     res.render('create')
 }
 )
-
-
 app.get('/index', async (_req, res) => {
     const posts = await Post.find({})
     console.log(posts)
@@ -53,14 +51,18 @@ app.get('/index', async (_req, res) => {
     // res.render('about')
 
 })
-
-
-app.get('/about',(req,res)=> {   // routing for the about page
-//   res.sendfile(path.resolve(__dirname,'pages/about.html'))
-res.render('about')
+app.get('/about', (req, res) => {   // routing for the about page
+    //   res.sendfile(path.resolve(__dirname,'pages/about.html'))
+    res.render('about')
 })
-app.get('/post', (req, res) => {   //routing for the post page
-    res.render('post')
+app.get('/post/:id', async (req, res) => {   //routing for the post page
+    //    console.log(req.params)   //display the object paramas in the log
+    const post = await Post.findById(req.params.id)
+
+
+    res.render('post', {
+        post
+    })
 })
 
 app.post('/post/store', (req, res) => {  //send the data to the server
