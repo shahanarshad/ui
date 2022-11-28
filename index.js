@@ -9,7 +9,13 @@ app.use(express.static('public'))
 app.use(expressEdge.engine)
 
 const bodyParser = require('body-parser')
+const fileUpload=require('express-fileupload')
+const customMiddleware=(req,res,next)=>
+{
+console.log('I have been called this time')
+next()  //this function is called to tell express to move to handle browser request.
 
+}
 //app.set('views','${__dirname}/views')
 //app.use(express.static(path.join(__dirname + '../public')));
 //app.engine('html', require('ejs').renderFile);
@@ -17,7 +23,8 @@ app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-
+app.use(fileUpload())
+app.use(customMiddleware)
 /*app.get('/index',(req,res)=> {     //routing for the home page
 res.sendfile(path.resolve(__dirname,'pages/index.html'))
 })*/
@@ -64,11 +71,22 @@ app.get('/post/:id', async (req, res) => {   //routing for the post page
 })
 
 app.post('/post/store', (req, res) => {  //send the data to the server
-    Post.create(req.body, (error, post) => {
-        console.log(error, post)
-        res.redirect('/index')
+    console.log(req.files)  //the files sent in the request object are retrevied here
+    const {image}=req.files
+    image.mv(path.resolve(__dirname,'public/posts',image.name),(error)=>{
+        Post.create({
+            ...req.body,
+            image:'/posts/2.jpg'   //image.name is the name of the image uploaded, we are storing the image in the database.
+        }, (error, post) => {
+            console.log(error, post)
+            res.redirect('/index')
+        });
+
+
     })
-})
+
+   
+});
 
 app.get('/contact', (req, res) => {   //routing for the contact page
     // res.sendfile(path.resolve(__dirname,'pages/contact.html'))
