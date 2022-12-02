@@ -12,7 +12,12 @@ const bodyParser = require('body-parser')
 const fileUpload=require('express-fileupload')
 const customMiddleware=(req,res,next)=>
 {
-console.log('I have been called this time')
+//console.log('I have been called this time')
+if(!(req.files && req.files.image)||!req.body.username||!req.body.title ||!req.body.subtitle || !req.body.content)
+{
+    return res.redirect('/post/new')
+}
+
 next()  //this function is called to tell express to move to handle browser request.
 
 }
@@ -24,7 +29,7 @@ app.set('views', __dirname + '/views');
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(fileUpload())
-app.use(customMiddleware)
+app.use('/post/store',customMiddleware)
 /*app.get('/index',(req,res)=> {     //routing for the home page
 res.sendfile(path.resolve(__dirname,'pages/index.html'))
 })*/
