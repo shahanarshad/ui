@@ -1,0 +1,58 @@
+@layout('layouts.app')
+
+
+@section('content')
+<header class="masthead" style="background-image: url('/assets/img/post-bg.jpg')">
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form action="/users/register" method="POST" enctype="multipart/form-data">
+
+
+                <div class="control-group">
+
+                    <div class="form groupF floating-label-form-group controls"></div>
+                    <label>username</label>
+                    <input type='text' name='username' placeholder="Username" class='form-control'>
+                </div>
+                <div class="control-group">
+
+
+
+                    <div class="form groupF floating-label-form-group controls"></div>
+                    <label>Email</label>
+                    <input type='text' name='email' placeholder="Email" class='form-control'>
+                </div>
+                <div class="control-group">
+
+                    <div class="form groupF floating-label-form-group controls"></div>
+                    <label>Password</label>
+                    <input type='password' name='password' placeholder="password" class='form-control'>
+                </div>
+                
+
+            
+                <!--button -->
+                <div class="form-group my-4 text-center">
+                    <button class="btn btn-primary">Register now</button>
+                </div>
+
+
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+@endsection

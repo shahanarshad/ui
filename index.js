@@ -14,6 +14,7 @@ const createPostController = require("./controllers/createPost");
 const createHomeController= require("./controllers/homePage");
 const createStoreController=require("./controllers/storePost");
 const createContactController=require("./controllers/contactPage");
+const createUserController=require("./controllers/createUser");
 const getPostController=require("./controllers/getPost");
 const customM=require('./middleware/storePost');
 app.set('view engine', 'html');
@@ -30,7 +31,7 @@ app.get('/about', (req, res) => {   // routing for the about page   page was del
     res.render('about')
 })
 app.get('/post/:id', getPostController);
-
+app.get("/auth/register",createUserController);
 app.post('/post/store', createStoreController);
 app.get('/contact', createContactController);
 app.listen(4000, () => {
